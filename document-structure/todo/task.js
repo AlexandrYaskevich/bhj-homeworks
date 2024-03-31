@@ -4,7 +4,7 @@ const taskslist = document.querySelector('.tasks__list');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    if(Array.from(tasksInput.value).length > 0) {
+    if((tasksInput.value.trim()).length > 0) {
         let div = document.createElement('div');
         let divTask = document.createElement('div');
         divTask.setAttribute('class', 'task');

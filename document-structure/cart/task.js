@@ -1,13 +1,12 @@
 const  cartProducts = document.querySelector('.cart__products');
 const products = [...document.getElementsByClassName('product')];
-const image = [...document.querySelectorAll('.product__image')];
-
+const images = [...document.querySelectorAll('.product__image')];
+ 
 const mins = [...document.getElementsByClassName('product__quantity-control product__quantity-control_dec')];
 const pluss = [...document.getElementsByClassName('product__quantity-control product__quantity-control_inc')];  
 const counters = [...document.getElementsByClassName('product__quantity-value')];
 const addsBasket = [...document.querySelectorAll('.product__add ')];
-
-
+let basket = [];
  
 mins.forEach((min, index) => {
     min.addEventListener('click', (e) => {
@@ -29,15 +28,26 @@ pluss.forEach((plus, index) => {
 addsBasket.forEach((add, index)=>{
     add.addEventListener('click', (e) => {
         if(addsBasket.indexOf(e.currentTarget) === index) {
-            let productBasket = products[index].cloneNode(false);
-            cartProducts.appendChild(productBasket);
-            let counterBasket = document.createElement('div');
-            counterBasket.classList.add('cart__product-count');
-            counterBasket.textContent = counters[index].textContent;
-            productBasket.appendChild(counterBasket);
-            let imageBasket = image[index].cloneNode(true);
-            productBasket.appendChild(imageBasket);
-
+            if(counters[index].textContent > 0) {
+                 if(!basket.find((i) => i === products[index].getAttribute('data-id'))) {
+                 let productInBasket = products[index].cloneNode(false);
+                 productInBasket.classList.remove('product');
+                productInBasket.classList.add('cart__product');
+                productInBasket.appendChild(images[index].cloneNode(true));
+                let divCounter = document.createElement('div');
+                 divCounter.setAttribute('class', 'cart__product-count');
+                divCounter.textContent = parseInt(counters[index].textContent);
+                productInBasket.appendChild(divCounter);
+                cartProducts.appendChild(productInBasket);
+                basket.push(products[index].getAttribute('data-id'));
+                 }
+                 else {
+                    let divCounters = [...document.querySelectorAll('.cart__product-count')];
+                    divCounters[index].textContent = parseInt(divCounters[index].textContent) + parseInt(counters[index].textContent);
+                 }
+            } 
+        
+ 
         }
     })
 }) 
