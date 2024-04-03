@@ -1,9 +1,7 @@
 const form = document.getElementById('signin__form');
 const signin = document.getElementById('signin');
-signin.classList.add('signin_active');
 const welcome = document.querySelector('.welcome');
-
-
+ 
  
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -23,5 +21,6 @@ form.addEventListener('submit', (e) => {
         }
     }        
     xhr.send(formData);
+    form.reset();
  });
  
