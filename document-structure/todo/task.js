@@ -5,19 +5,14 @@ const taskslist = document.querySelector('.tasks__list');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     if((tasksInput.value.trim()).length > 0) {
-        let div = document.createElement('div');
-        let divTask = document.createElement('div');
-        divTask.setAttribute('class', 'task');
-        taskslist.appendChild(divTask);
-
-        div.setAttribute('class', 'task__title');
-        div.textContent = tasksInput.value;
-        let a = document.createElement('a');
-        a.setAttribute('href', '#');
-        a.setAttribute('class', 'task__remove');
-        a.textContent = 'x';
-        divTask.appendChild(div);
-        divTask.appendChild(a);
+        taskslist.insertAdjacentHTML('afterbegin', `
+        <div class="task">
+          <div class="task__title">
+            ${tasksInput.value}
+          </div>
+          <a href="#" class="task__remove">&times;</a>
+        </div>
+        `);
         form.reset();
 
         const aLists = [...document.querySelectorAll('.task__remove')];
