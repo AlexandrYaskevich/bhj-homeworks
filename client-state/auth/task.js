@@ -23,4 +23,11 @@ form.addEventListener('submit', (e) => {
     xhr.send(formData);
     form.reset();
  });
- 
+ window.addEventListener('DOMContentLoaded', () => {
+    const userId = localStorage.getItem('userId');
+    if(userId) {
+        signin.classList.remove('signin_active');
+        welcome.classList.add('welcome_active');
+        welcome.querySelector('#user_id').textContent = userId;
+    }
+});
