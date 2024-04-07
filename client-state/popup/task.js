@@ -1,17 +1,14 @@
 const content = document.getElementById('subscribe-modal');
-const button = document.querySelector('.modal__close_times');
+const button = document.querySelector('.modal__close');
  
 button.addEventListener('click', () => {
     content.classList.remove('modal_active');
-    document.cookie = 'status=' + encodeURIComponent('close');
+    document.cookie = 'status=closed';
+    console.log(document.cookie.includes("status=closed"));
+
 });
  
-window.addEventListener('load', () => {
-    if(!document.cookie.includes("status=close")){
-        content.classList.remove('modal_active');
-    }
-    else {
+ if(!document.cookie.includes("status=closed")){   
         content.classList.add('modal_active');
-    }
-  })
- 
+}
+
