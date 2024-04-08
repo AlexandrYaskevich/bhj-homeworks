@@ -7,7 +7,7 @@ button.addEventListener('click', () => {
     console.log(document.cookie.includes("status=closed"));
 
 });
- 
+
  if(!document.cookie.includes("status=closed")){   
         content.classList.add('modal_active');
 }
