@@ -7,12 +7,12 @@ const pluss = [...document.getElementsByClassName('product__quantity-control pro
 const counters = [...document.getElementsByClassName('product__quantity-value')];
  
 const addsBasket = [...document.querySelectorAll('.product__add')];
-
+ 
  
  
 mins.forEach((min, index) => {
     min.addEventListener('click', (e) => {
-      if(mins.indexOf(e.currentTarget) === index)  {
+      if(counters[index].textContent > 1)  {
             counters[index].textContent--;
        }
     })
@@ -25,8 +25,8 @@ pluss.forEach((plus, index) => {
  
 addsBasket.forEach((add, index)=>{
     add.addEventListener('click', (e) => {       
-   
-                if([...document.querySelectorAll('.cart__product')].find((i) => i.dataset.id === products[index].dataset.id)) {
+            let resultFind = [...document.querySelectorAll('.cart__product')].find((i) => i.dataset.id === products[index].dataset.id)
+                if(resultFind) {
                    let count =  parseInt(document.querySelector( `[data-id="${products[index].dataset.id}"]`).children[1].textContent);
                    document.querySelector( `[data-id="${products[index].dataset.id}"]`).children[1].textContent = count + parseInt(products[index].children[2].children[0].children[1].children[1].textContent);
                 }
@@ -41,4 +41,3 @@ addsBasket.forEach((add, index)=>{
  
         })
 }) 
- 
