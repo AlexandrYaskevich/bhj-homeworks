@@ -15,22 +15,15 @@ form.addEventListener('submit', (e) => {
         `);
         form.reset();
  
-        const aLists = [...document.querySelectorAll('.task__remove')];
-        const divTasks = [...document.querySelectorAll('.task')];
-                aLists.forEach((element, index) => {
-                    element.onclick = function (e) {
-                        if(aLists.indexOf(e.currentTarget) === index) {
-                            divTasks[index].remove();
+        const aList = document.querySelector('.task__remove');
+        const divTask = document.querySelector('.task');
+                
+        aList.onclick = function (e) {
+                       
+                            divTask.remove();
                             }
-                        }
-                });
+               
               
-      /** Вы имели ввиду это??? => у меня на компьюетере это не работает  document.querySelectorAll('.task__remove').onclick = function (e) {
-            e.preventDefault();
-            if(aList.indexOf(e.currentTarget) === index) {
-                document.querySelectorAll('.task').remove();
-             }
-            }
-        } **/
+
     }
 });
